@@ -1,0 +1,362 @@
+<!-- PLATAFORMA DE NOTAS — I.E.D. PESTALOZZI v13 -->
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;700;800;900&family=Space+Grotesk:wght@500;700&display=swap');
+:root{--az:#2563eb;--azl:#3b82f6;--azd:#1d4ed8;--mo:#7c3aed;--vd:#10b981;--rj:#ef4444;--na:#f59e0b;--tx:#f1f5f9;--tx2:#94a3b8;--tx3:#64748b;--bd:rgba(255,255,255,0.10);--gl:rgba(255,255,255,0.05);--gl2:rgba(255,255,255,0.10);--gl3:rgba(255,255,255,0.16);--blur:blur(24px);--sh:0 8px 40px rgba(0,0,0,0.45)}
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Nunito',sans-serif}
+.pn-body{background:linear-gradient(145deg,#05111f 0%,#0a1f3d 40%,#0d2a52 70%,#05111f 100%);min-height:100vh;padding:28px 16px 56px;color:var(--tx);position:relative;overflow-x:hidden}
+.pn-body::before,.pn-body::after{content:'';position:fixed;border-radius:50%;pointer-events:none;z-index:0;filter:blur(90px)}
+.pn-body::before{width:700px;height:700px;top:-250px;left:-180px;background:radial-gradient(circle,rgba(37,99,235,0.28) 0%,transparent 70%);animation:o1 14s ease-in-out infinite alternate}
+.pn-body::after{width:600px;height:600px;bottom:-200px;right:-150px;background:radial-gradient(circle,rgba(29,78,216,0.22) 0%,transparent 70%);animation:o2 11s ease-in-out infinite alternate-reverse}
+@keyframes o1{from{transform:translate(0,0) scale(1)}to{transform:translate(50px,35px) scale(1.2)}}
+@keyframes o2{from{transform:translate(0,0) scale(1)}to{transform:translate(-40px,-30px) scale(1.15)}}
+.pn-wrap{max-width:900px;margin:0 auto;position:relative;z-index:1}
+.pn-header{text-align:center;margin-bottom:40px}
+.pn-logo{width:84px;height:84px;border-radius:26px;background:linear-gradient(135deg,#1d4ed8,#2563eb,#3b82f6);font-size:2.4rem;box-shadow:0 10px 34px rgba(37,99,235,0.55),inset 0 1px 0 rgba(255,255,255,0.22);animation:lf 4.5s ease-in-out infinite;display:flex;align-items:center;justify-content:center;margin:0 auto 18px}
+@keyframes lf{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-11px) rotate(2deg)}}
+.pn-titulo{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.6rem,5vw,2.3rem);font-weight:700;background:linear-gradient(135deg,#93c5fd 0%,#60a5fa 50%,#bfdbfe 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1.2;margin-bottom:8px}
+.pn-sub{color:var(--tx2);font-size:.9rem;font-weight:500}
+.pn-card{background:rgba(255,255,255,0.04);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid rgba(59,130,246,0.25);border-radius:22px;box-shadow:var(--sh),inset 0 1px 0 rgba(255,255,255,0.08);padding:40px 40px 48px;position:relative;overflow:hidden}
+.pn-card::after{content:'';position:absolute;top:0;left:12%;right:12%;height:1px;background:linear-gradient(90deg,transparent,rgba(96,165,250,0.4),transparent);pointer-events:none}
+.pn-login-inner{display:flex;flex-direction:column;align-items:center;gap:26px;padding-bottom:16px}
+.pn-icon{font-size:3rem;display:block;text-align:center;margin-top:8px}
+.pn-h2{font-size:1.45rem;font-weight:900;color:var(--tx);text-align:center}
+.pn-desc{color:var(--tx2);font-size:.9rem;text-align:center;line-height:1.6;max-width:380px}
+.pn-campo{width:100%;max-width:430px}
+.pn-campo-label{display:flex;align-items:center;gap:6px;font-size:.77rem;font-weight:800;color:var(--tx2);letter-spacing:.08em;text-transform:uppercase;margin-bottom:10px}
+.pn-input{width:100%;background:rgba(255,255,255,0.04);border:1.5px solid rgba(59,130,246,0.3);border-radius:14px;padding:17px 24px;font-size:1.35rem;font-weight:800;color:var(--tx);text-align:center;letter-spacing:.18em;text-transform:uppercase;outline:none;-webkit-appearance:none;transition:border-color .3s,box-shadow .3s,background .3s;font-family:'Space Grotesk',sans-serif}
+.pn-input:focus{border-color:#60a5fa;box-shadow:0 0 0 4px rgba(59,130,246,0.2);background:rgba(59,130,246,0.04)}
+.pn-input::placeholder{color:rgba(255,255,255,0.18);letter-spacing:.05em;font-size:1rem;font-weight:400}
+.pn-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:18px 48px;border-radius:50px;font-size:1rem;font-weight:800;cursor:pointer;border:none;outline:none;transition:transform .22s,box-shadow .22s,opacity .2s;position:relative;overflow:hidden;min-width:280px;letter-spacing:.02em;font-family:'Nunito',sans-serif;background:linear-gradient(135deg,#1d4ed8,#2563eb,#3b82f6);color:#fff;box-shadow:0 5px 28px rgba(37,99,235,0.55)}
+.pn-btn::before{content:'';position:absolute;inset:0;background:linear-gradient(to bottom,rgba(255,255,255,0.15),transparent);border-radius:inherit;pointer-events:none}
+.pn-btn:hover{transform:translateY(-3px);box-shadow:0 9px 36px rgba(37,99,235,0.7)}
+.pn-btn:active{transform:scale(.97)}
+.pn-btn:disabled{opacity:.42;cursor:not-allowed;transform:none!important}
+.pn-aviso{width:100%;max-width:450px;background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.22);border-radius:15px;padding:18px 20px 18px 16px;display:flex;gap:12px;align-items:flex-start}
+.pn-aviso-ico{font-size:1.2rem;flex-shrink:0;margin-top:2px}
+.pn-aviso-txt{font-size:.83rem;color:#fcd34d;font-weight:600;line-height:1.65}
+.pn-alerta{border-radius:13px;padding:13px 18px;font-size:.88rem;font-weight:700;display:none;align-items:flex-start;gap:10px;line-height:1.5;width:100%;max-width:430px}
+.pn-alerta.error{background:rgba(239,68,68,0.12);border:1px solid rgba(239,68,68,0.36);color:#fca5a5;display:flex}
+.pn-alerta.warning{background:rgba(245,158,11,0.12);border:1px solid rgba(245,158,11,0.36);color:#fcd34d;display:flex}
+#panel-resultados{display:none}
+.pn-back-btn{font-family:'Nunito',sans-serif;font-size:.82rem;font-weight:800;letter-spacing:.05em;text-transform:uppercase;padding:9px 20px;background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);border-radius:50px;color:#93c5fd;cursor:pointer;transition:all .15s;margin-bottom:28px;display:inline-flex;align-items:center;gap:6px}
+.pn-back-btn:hover{background:rgba(59,130,246,0.22);color:#bfdbfe}
+.pn-student-info{text-align:center;margin-bottom:28px}
+.pn-student-nombre{font-family:'Space Grotesk',sans-serif;font-size:clamp(1.4rem,4vw,2rem);font-weight:700;background:linear-gradient(135deg,#93c5fd 0%,#bfdbfe 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;margin-bottom:8px}
+.pn-student-chips{color:var(--tx2);font-size:.9rem;font-weight:600;display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap}
+.pn-chip{background:rgba(59,130,246,0.12);border:1px solid rgba(59,130,246,0.25);border-radius:50px;padding:5px 14px;font-size:.82rem;font-weight:700;color:#93c5fd}
+.pn-materia-card{background:rgba(255,255,255,0.03);backdrop-filter:var(--blur);-webkit-backdrop-filter:var(--blur);border:1px solid rgba(59,130,246,0.2);border-radius:18px;padding:28px;margin-bottom:20px;position:relative;overflow:hidden}
+.pn-materia-card::after{content:'';position:absolute;top:0;left:10%;right:10%;height:1px;background:linear-gradient(90deg,transparent,rgba(96,165,250,0.3),transparent);pointer-events:none}
+.pn-materia-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:10px;margin-bottom:20px}
+.pn-materia-titulo{font-family:'Space Grotesk',sans-serif;font-size:1.05rem;font-weight:700;color:var(--tx)}
+.pn-badge{font-size:.72rem;font-weight:800;padding:6px 14px;border-radius:50px;letter-spacing:.05em}
+.badge-superior{background:rgba(16,185,129,0.15);color:#6ee7b7;border:1px solid rgba(16,185,129,0.3)}
+.badge-alto{background:rgba(59,130,246,0.15);color:#93c5fd;border:1px solid rgba(59,130,246,0.3)}
+.badge-basico{background:rgba(245,158,11,0.15);color:#fcd34d;border:1px solid rgba(245,158,11,0.3)}
+.badge-bajo{background:rgba(239,68,68,0.15);color:#fca5a5;border:1px solid rgba(239,68,68,0.3)}
+.badge-null{background:rgba(255,255,255,0.06);color:var(--tx3);border:1px solid var(--bd)}
+.pn-periodo-tabs{display:flex;gap:6px;flex-wrap:nowrap;margin-bottom:16px;overflow-x:auto;padding-bottom:2px;scrollbar-width:none}
+.pn-periodo-tab{font-family:'Nunito',sans-serif;font-size:.78rem;font-weight:800;padding:6px 16px;border-radius:50px;border:1px solid rgba(59,130,246,0.25);background:transparent;color:var(--tx3);cursor:pointer;transition:all .15s;letter-spacing:.03em}
+.pn-periodo-tab:hover{background:rgba(59,130,246,0.1);color:#93c5fd}
+.pn-periodo-tab.activo{background:rgba(59,130,246,0.18);border-color:rgba(59,130,246,0.5);color:#bfdbfe}
+.pn-periodo-content{display:none}
+.pn-periodo-content.visible{display:block}
+.pn-periodo-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px}
+.pn-periodo-label{font-size:.82rem;font-weight:800;color:#93c5fd;letter-spacing:.04em}
+.pn-periodo-prom{font-family:'Space Grotesk',sans-serif;font-size:.85rem;font-weight:700}
+.pn-notas-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(100px,1fr));gap:10px;margin-bottom:8px;width:100%;min-width:0}
+.pn-nota-item{background:rgba(255,255,255,0.04);border:1px solid rgba(59,130,246,0.15);border-radius:10px;padding:12px;text-align:center;min-width:0;overflow:hidden}
+.pn-nota-act{font-size:10px;color:var(--tx3);display:block;margin-bottom:8px;white-space:normal;overflow:hidden;text-overflow:clip;text-transform:uppercase;font-weight:800;letter-spacing:.04em;max-width:100%;line-height:1.3;word-break:break-word;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical}
+.pn-nota-val{font-size:1.4rem;font-weight:900;display:block}
+.pn-sin-notas{font-size:.83rem;color:var(--tx3);font-style:italic;padding:12px 0}
+.pn-definitiva{background:linear-gradient(135deg,rgba(29,78,216,0.25),rgba(37,99,235,0.15));border:1px solid rgba(59,130,246,0.4);border-radius:14px;padding:18px 20px;margin-top:18px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.pn-def-label{font-size:.8rem;font-weight:800;color:#93c5fd;text-transform:uppercase;letter-spacing:.07em}
+.pn-def-valor{font-family:'Space Grotesk',sans-serif;font-size:1.6rem;font-weight:700}
+.pn-def-badge{font-size:.75rem;font-weight:800;padding:5px 14px;border-radius:50px;letter-spacing:.04em}
+.pn-msg{padding:12px 16px;border-radius:10px;font-size:.85rem;font-weight:700;line-height:1.55;margin-top:14px}
+.msg-superior{background:rgba(16,185,129,0.10);color:#6ee7b7;border-left:3px solid #10b981}
+.msg-alto{background:rgba(59,130,246,0.10);color:#93c5fd;border-left:3px solid #3b82f6}
+.msg-basico{background:rgba(245,158,11,0.10);color:#fcd34d;border-left:3px solid #f59e0b}
+.msg-bajo{background:rgba(239,68,68,0.10);color:#fca5a5;border-left:3px solid #ef4444}
+.msg-info{background:rgba(59,130,246,0.08);color:#93c5fd;border-left:3px solid #3b82f6}
+@media(max-width:640px){.pn-body{padding:14px 10px 44px}.pn-card,.pn-materia-card{padding:24px 18px}.pn-btn{width:100%;min-width:unset}.pn-logo{width:70px;height:70px;font-size:2rem}}
+
+/* LAYOUT PERÍODO: izquierda notas | derecha resumen */
+.pn-periodo-body{display:grid;grid-template-columns:1fr 200px;gap:16px;align-items:start;width:100%;min-width:0}
+.pn-periodo-left{}
+.pn-periodo-right{background:rgba(255,255,255,0.05);border:1px solid rgba(59,130,246,0.25);border-radius:14px;padding:16px;text-align:center;min-width:0;overflow:hidden}
+.pn-right-label{font-size:.75rem;font-weight:800;color:#93c5fd;text-transform:uppercase;letter-spacing:.07em;margin-bottom:6px}
+.pn-right-valor{font-family:'Space Grotesk',sans-serif;font-size:2.4rem;font-weight:700;line-height:1;margin-bottom:10px;word-break:keep-all;white-space:nowrap}
+.pn-right-badge{font-size:.72rem;font-weight:800;padding:6px 14px;border-radius:50px;letter-spacing:.04em;display:inline-block;white-space:nowrap}
+/* BARRA DEFINITIVA */
+.pn-def-barra{background:linear-gradient(135deg,rgba(29,78,216,0.3),rgba(15,23,42,0.8));border:1px solid rgba(59,130,246,0.45);border-radius:14px;padding:20px 24px;margin-top:16px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.pn-def-num{font-family:'Space Grotesk',sans-serif;font-size:2.6rem;font-weight:700;line-height:1;min-width:70px}
+.pn-def-info{flex:1}
+.pn-def-titulo{font-size:.75rem;font-weight:800;color:#93c5fd;text-transform:uppercase;letter-spacing:.08em;margin-bottom:4px}
+.pn-def-badge2{font-size:.75rem;font-weight:800;padding:5px 14px;border-radius:50px;letter-spacing:.04em;display:inline-block;margin-top:6px}
+/* ESCALA */
+.pn-escala{background:rgba(245,158,11,0.07);border:1px solid rgba(245,158,11,0.22);border-radius:10px;padding:10px 16px;margin-top:14px;font-size:.82rem;font-weight:700;color:#fcd34d;text-align:center}
+@media(max-width:680px){
+.pn-periodo-tabs{display:grid !important;grid-template-columns:1fr 1fr;gap:6px;overflow-x:visible;flex-wrap:unset;padding-bottom:0}
+.pn-periodo-tab{font-size:.75rem;padding:7px 8px;white-space:nowrap;text-align:center;flex-shrink:unset}
+.pn-periodo-body{display:block !important}
+.pn-periodo-left{width:100%;margin-bottom:12px}
+.pn-notas-grid{grid-template-columns:repeat(2,1fr) !important;gap:8px}
+.pn-nota-act{font-size:9px;letter-spacing:.02em}
+.pn-nota-act{font-size:9px}
+.pn-nota-val{font-size:1.2rem}
+.pn-periodo-right{display:block !important;text-align:left;padding:12px 16px;margin-bottom:0}
+.pn-right-label{font-size:.7rem;margin-bottom:4px;display:block}
+.pn-right-valor{font-size:2rem;line-height:1;margin-bottom:8px;display:block}
+.pn-right-badge{font-size:.7rem;padding:5px 12px;white-space:nowrap}
+.pn-def-barra{padding:14px 16px;gap:12px;flex-wrap:nowrap}
+.pn-def-num{font-size:2rem;min-width:60px;flex-shrink:0}
+.pn-def-badge2{font-size:.7rem;padding:5px 10px;white-space:nowrap}
+.pn-escala{font-size:.76rem;padding:8px 12px}
+.pn-materia-card{padding:18px 14px}
+.pn-card{padding:28px 20px 36px}
+.pn-def-barra .pn-def-info{min-width:0}
+}
+</style>
+
+<div class="pn-body">
+<div class="pn-wrap">
+  <div class="pn-header">
+    <div class="pn-logo">📚</div>
+    <h1 class="pn-titulo">Consulta de notas</h1>
+    <p class="pn-sub">I.E.D. Pestalozzi &middot; Nueva Granada, Magdalena</p>
+  </div>
+  <div id="panel-login" class="pn-card">
+    <div class="pn-login-inner">
+      <span class="pn-icon">🔐</span>
+      <h2 class="pn-h2">Ingresa tu código de estudiante</h2>
+      <p class="pn-desc">Tu docente te asignó un código único. Con él puedes ver todas tus notas.</p>
+      <div class="pn-campo">
+        <div class="pn-campo-label">🎫 Código de acceso</div>
+        <input type="text" id="input-codigo" class="pn-input" placeholder="Ej: 6A1278" maxlength="8" autocomplete="off" spellcheck="false" oninput="this.value=this.value.toUpperCase()" onkeydown="if(event.key==='Enter') consultarNotas()"/>
+      </div>
+      <button id="btn-consultar" class="pn-btn" onclick="consultarNotas()">Ver mis notas</button>
+      <div id="mensaje-alerta" class="pn-alerta"></div>
+      <div class="pn-aviso">
+        <span class="pn-aviso-ico">⚠️</span>
+        <p class="pn-aviso-txt">Tu código es personal. Si no lo recuerdas, consúltalo con tu docente.</p>
+      </div>
+    </div>
+  </div>
+  <div id="panel-resultados">
+    <button class="pn-back-btn" onclick="volver()">← Volver a buscar</button>
+    <div class="pn-student-info">
+      <div class="pn-student-nombre" id="res-nombre"></div>
+      <div class="pn-student-chips">
+        <span class="pn-chip" id="res-grupo"></span>
+        <span class="pn-chip" id="res-codigo"></span>
+      </div>
+    </div>
+    <div id="contenedor-materias"></div>
+  </div>
+</div>
+</div>
+
+<script>
+var US = 'https://script.google.com/macros/s/AKfycbx_dum7SA3KqMk8Q5PO3vPSQbgWzmfnxBEQdk3cjdRAY2nv5grP1bvFzy-tI0ze42-Z/exec';
+
+var Q = '"';
+function h(s){ return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+function d(cls,content){ return '<div class='+Q+cls+Q+'>'+content+'</div>'; }
+function sp(cls,content){ return '<span class='+Q+cls+Q+'>'+content+'</span>'; }
+
+function consultarAPI(p){
+  return new Promise(function(resolve,reject){
+    var cb='cb_'+Date.now();
+    var s=document.createElement('script');
+    var pm=new URLSearchParams(p);
+    pm.append('callback',cb);
+    window[cb]=function(data){
+      delete window[cb];
+      if(document.body.contains(s))document.body.removeChild(s);
+      resolve(data);
+    };
+    s.onerror=function(){
+      delete window[cb];
+      if(document.body.contains(s))document.body.removeChild(s);
+      reject(new Error('Error'));
+    };
+    s.src=US+'?'+pm.toString();
+    document.body.appendChild(s);
+  });
+}
+
+function mostrarAlerta(msg,tipo){
+  var a=document.getElementById('mensaje-alerta');
+  a.className='pn-alerta '+tipo;
+  a.innerText=msg;
+}
+function limpiarAlerta(){
+  var a=document.getElementById('mensaje-alerta');
+  a.className='pn-alerta';
+  a.innerText='';
+}
+
+function des(p){
+  if(p===null||p===undefined) return {texto:'Sin notas',clase:'badge-null',color:'#64748b',msg:'msg-info'};
+  if(p>=4.6) return {texto:'Desempeño Superior',clase:'badge-superior',color:'#10b981',msg:'msg-superior'};
+  if(p>=4.0) return {texto:'Desempeño Alto',clase:'badge-alto',color:'#3b82f6',msg:'msg-alto'};
+  if(p>=3.0) return {texto:'Desempeño Básico',clase:'badge-basico',color:'#f59e0b',msg:'msg-basico'};
+  return {texto:'Desempeño Bajo',clase:'badge-bajo',color:'#ef4444',msg:'msg-bajo'};
+}
+function colorNota(n){
+  if(n===null) return '#64748b';
+  if(n>=4.6) return '#10b981';
+  if(n>=4.0) return '#3b82f6';
+  if(n>=3.0) return '#f59e0b';
+  return '#ef4444';
+}
+function textoMsg(p,m,esFinal){
+  if(p===null) return 'Aún no hay actividades calificadas en <strong>'+h(m)+'</strong>.';
+  if(esFinal){
+    if(p>=4.6) return 'Alcanzaste <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — ¡Desempeño Superior! Resultado excelente.';
+    if(p>=4.0) return 'Alcanzaste <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — Desempeño Alto. ¡Muy buen resultado!';
+    if(p>=3.0) return 'Alcanzaste <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — Desempeño Básico. Aprobaste la materia.';
+    return 'Alcanzaste <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — Desempeño Bajo. No alcanzaste el mínimo aprobatorio (3.0).';
+  }
+  if(p>=4.6) return 'Llevas <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — ¡Desempeño Superior! Excelente trabajo.';
+  if(p>=4.0) return 'Llevas <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — Desempeño Alto. ¡Muy bien!';
+  if(p>=3.0) return 'Llevas <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — Desempeño Básico. Puedes mejorar.';
+  return 'Llevas <strong>'+p.toFixed(2)+'</strong> en <strong>'+h(m)+'</strong> — Desempeño Bajo. Necesitas subir <strong>'+(3-p).toFixed(2)+'</strong> puntos para alcanzar el mínimo (3.0).';
+}
+
+async function consultarNotas(){
+  var codigo=document.getElementById('input-codigo').value.trim().toUpperCase();
+  var btn=document.getElementById('btn-consultar');
+  limpiarAlerta();
+  if(!codigo){mostrarAlerta('⚠️ Escribe tu código antes de continuar.','warning');return;}
+  btn.disabled=true;
+  btn.innerText='Consultando...';
+  try{
+    var datos=await consultarAPI({action:'getNotas',codigo:codigo});
+    btn.disabled=false;
+    btn.innerText='Ver mis notas';
+    if(datos.error){mostrarAlerta('❌ '+datos.error,'error');return;}
+    renderizar(datos);
+  }catch(e){
+    btn.disabled=false;
+    btn.innerText='Ver mis notas';
+    mostrarAlerta('❌ Error de conexión. Intenta nuevamente.','error');
+  }
+}
+
+function renderizar(datos){
+  document.getElementById('panel-login').style.display='none';
+  document.getElementById('panel-resultados').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+  document.getElementById('res-nombre').innerText=datos.nombre;
+  document.getElementById('res-grupo').innerText='Grado '+datos.grupo;
+  document.getElementById('res-codigo').innerText=datos.codigo;
+
+  var cont=document.getElementById('contenedor-materias');
+  cont.innerHTML='';
+
+  datos.materias.forEach(function(mat){
+    var def=mat.definitiva;
+    var dDef=des(def);
+
+    var card=document.createElement('div');
+    card.className='pn-materia-card';
+
+    // Header materia
+    var html='<div class='+Q+'pn-materia-header'+Q+'>';
+    html+='<span class='+Q+'pn-materia-titulo'+Q+'>'+h(mat.materia)+'</span>';
+    html+='</div>';
+
+    // Tabs
+    var nombres=['Período 1','Período 2','Período 3','Período 4'];
+    html+='<div class='+Q+'pn-periodo-tabs'+Q+'>';
+    mat.periodos.forEach(function(p,i){
+      var activo=i===0?' activo':'';
+      html+='<button class='+Q+'pn-periodo-tab'+activo+Q+' onclick='+Q+'cambiarTab(this,'+i+')'+Q+'>'+nombres[i]+'</button>';
+    });
+    html+='</div>';
+
+    // Contenido períodos
+    mat.periodos.forEach(function(p,i){
+      var visible=i===0?' visible':'';
+      var dP=des(p.promedio);
+      var promDisplay=p.promedio!==null?p.promedio.toFixed(2):'—';
+
+      // Definitiva acumulada
+      var sumaHasta=0;
+      for(var k=0;k<=i;k++) sumaHasta+=mat.periodos[k].promedio||0;
+      var defAcum=Math.round((sumaHasta/4)*100)/100;
+      var dDA=des(defAcum);
+
+      html+='<div class='+Q+'pn-periodo-content'+visible+Q+' data-idx='+Q+i+Q+'>';
+      html+='<div class='+Q+'pn-periodo-body'+Q+'>';
+
+      // IZQUIERDA: notas
+      html+='<div class='+Q+'pn-periodo-left'+Q+'>';
+      if(p.notas.length===0){
+        html+='<p class='+Q+'pn-sin-notas'+Q+'>No hay actividades registradas en este período.</p>';
+      } else {
+        html+='<div class='+Q+'pn-notas-grid'+Q+'>';
+        p.notas.forEach(function(n){
+          var val=n.nota!==null?n.nota.toFixed(1):'·';
+          html+='<div class='+Q+'pn-nota-item'+Q+'>';
+          html+='<span class='+Q+'pn-nota-act'+Q+' title='+Q+h(n.actividad)+Q+'>'+h(n.actividad)+'</span>';
+          html+='<span class='+Q+'pn-nota-val'+Q+' style='+Q+'color:'+colorNota(n.nota)+Q+'>'+val+'</span>';
+          html+='</div>';
+        });
+        html+='</div>';
+      }
+      html+='</div>'; // cierre left
+
+      // DERECHA: nota del período
+      html+='<div class='+Q+'pn-periodo-right'+Q+'>';
+      html+='<div class='+Q+'pn-right-label'+Q+'>Nota del período</div>';
+      html+='<div class='+Q+'pn-right-valor'+Q+' style='+Q+'color:'+dP.color+Q+'>'+promDisplay+'</div>';
+      html+='<span class='+Q+'pn-right-badge '+dP.clase+Q+'>'+dP.texto+'</span>';
+      html+='</div>'; // cierre right
+
+      html+='</div>'; // cierre periodo-body
+
+      // BARRA DEFINITIVA
+      html+='<div class='+Q+'pn-def-barra'+Q+'>';
+      html+='<div class='+Q+'pn-def-num'+Q+' style='+Q+'color:'+dDA.color+Q+'>'+defAcum.toFixed(2)+'</div>';
+      html+='<div class='+Q+'pn-def-info'+Q+'>';
+      html+='<div class='+Q+'pn-def-titulo'+Q+'>Nota definitiva</div>';
+      html+='<span class='+Q+'pn-def-badge2 '+dDA.clase+Q+'>'+dDA.texto+'</span>';
+      html+='</div>';
+      html+='</div>';
+
+      // ESCALA
+      html+='<div class='+Q+'pn-escala'+Q+'>Escala: 1.0 a 5.0 &nbsp;|&nbsp; Mínimo para aprobar: 3.0</div>';
+
+      // MENSAJE DIAGNÓSTICO por período
+      var esFinal=(i===mat.periodos.length-1);
+      html+='<div class='+Q+'pn-msg '+dDA.msg+Q+'>'+textoMsg(defAcum,mat.materia,esFinal)+'</div>';
+
+      html+='</div>'; // cierre pn-periodo-content
+    });
+
+    // Sin mensaje global — el diagnóstico ya está dentro de cada período
+
+    card.innerHTML=html;
+    cont.appendChild(card);
+  });
+}
+
+function cambiarTab(btn,idx){
+  var card=btn.closest('.pn-materia-card');
+  card.querySelectorAll('.pn-periodo-tab').forEach(function(t){t.classList.remove('activo');});
+  btn.classList.add('activo');
+  card.querySelectorAll('.pn-periodo-content').forEach(function(c){c.classList.remove('visible');});
+  var target=card.querySelector('[data-idx='+Q+idx+Q+']');
+  if(target) target.classList.add('visible');
+}
+
+function volver(){
+  document.getElementById('panel-login').style.display='block';
+  document.getElementById('panel-resultados').style.display='none';
+  document.getElementById('input-codigo').value='';
+  limpiarAlerta();
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+</script>
